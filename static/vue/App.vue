@@ -4,7 +4,15 @@
 
 <template>
 
-    <h1 class="">Hello From Vue, to Django!</h1>
+    <header class="flex ">
+
+    </header>
+
+    <main>
+
+    </main>
+
+    
 
 </template>
 
