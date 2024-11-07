@@ -1,5 +1,7 @@
 <script setup>
+
     import navi from './components/navi.vue';
+
 </script>
 
 <template>

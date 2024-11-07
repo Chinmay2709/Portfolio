@@ -1,17 +1,28 @@
 
 const path = require('path');
 const { VueLoaderPlugin, default: loader } = require('vue-loader');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const webpack = require('webpack');
 
 module.exports = {
+    
     entry: '/main.js',
     devServer: {
+
         host: '127.0.0.1',
         port: 8080,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        }
+        
         // proxy: [
         //     {
-        //         context: ['/ping_api'],
-        //         target: 'http://127.0.0.1:80'
+        //         context: ['/static/'],
+        //         target: 'http://127.0.0.1:8000'
         //     }
         // ]
         
@@ -41,15 +52,38 @@ module.exports = {
 
             {
                 test: /\.(png)$/,
-                type: 'asset/resource'
+                type: 'asset/resource',
+            },
+
+            {
+                test: /\.(gltf|bin)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[name][ext][query]'
+                }
             }
+
         ]
     },
     plugins: [
         new VueLoaderPlugin(),
+        
         new webpack.ProvidePlugin({
+
             $: 'jquery',
             jQuery: 'jquery'
+        
+        }),
+        
+        new CopyWebpackPlugin({
+
+            patterns: [
+
+                { from: 'assets', to: 'assets' }
+
+            ]
+
         })
+
     ],
 };

@@ -12,57 +12,89 @@
         flex
         flex-row
 
-        mt-[120px]
+        mt-[90px]
 
         fixed
-        
+
         justify-evenly
+        justify-items-start
         items-center
         
+        h-[80px]
         w-[90%]
 
         text-[20px]
 
-        bg-[#FF1500]
+        bg-[#6355FF]
 
         shadow-lg
+        rounded-lg
 
     ">
 
         <div class="
 
-            text-[50px]
-            text-[#FF8000]
+            flex
+            flex-row
+
+            text-[30px]
+            text-[#FFFFFF]
             font-bold
+
+            flex-1
 
             custom-font
         ">
+
+            <div class="
+
+                h-[25px]
+                w-[25px]
+
+                p-5
+
+                mr-4
+                ml-4
+
+                rounded-md
+                shadow-md
+
+                bg-[#000000]
+                bg-[url('/assets/myicon.png')]
+                bg-no-repeat
+                bg-cover
+                bg-center
+            ">
+
+            </div>
             Chinmay Mishra
         </div>
 
         <div class="
 
-            h-[100px]
-            w-[100px]
+            flex
+            
+            justify-center
+            items-center
+
+            mr-4
 
             
-            bg-[url('/assets/myicon.png')]
-            bg-no-repeat
-            bg-cover
         ">
-
-        </div>
-
-        <div>
             
             <button class="
             
                 
-                bg-white
-                text-black
+                bg-black
+                text-white
                 
-                w-[150px]
-                h-[40px]
+                shadow-md
+                rounded-md
+
+                w-[180px]
+                h-[50px]
+
+
 
             ">
                 
@@ -84,7 +116,7 @@
 
     .custom-font{
         
-        font-family: cursive;
+        font-family: sans-serif;
 
     }
 
