@@ -58,14 +58,19 @@ $(function(){
 
     // Adding models using loader.
     const loader = new GLTFLoader();
-    let mixer;
+    let model, modelGroups = new THREE.Group();
     
     loader.load(
         modelPath,
         (gltf) => {
 
-            const model = gltf.scene;
-            scene.add(model);
+            model = gltf.scene;
+
+            model.scale.set(0.01, 0.01, 0.01);
+            model.position.set(0, 0, 0);
+
+            modelGroups.add(model);
+            scene.add(modelGroups);
         
         },
         
@@ -88,14 +93,18 @@ $(function(){
         metalness: 0.1
 
     } )
+    
     const phongmaterial = new THREE.MeshPhongMaterial( {
+        
         color: 0xB1AAFF,
         shininess: 100
-    } )
+    
+    })
+    
     const cube = new THREE.Mesh(geometry, phongmaterial);
 
     // Adding Cube.
-    scene.add(cube)
+    // scene.add(cube)
 
     // Creating and adding plane.
     const planegeometry = new THREE.PlaneGeometry(20, 20);
@@ -106,7 +115,7 @@ $(function(){
     plane.position.y = -1
 
     // Adding plane.
-    scene.add(plane)
+    // scene.add(plane)
     
 
     // Animate function.
@@ -116,6 +125,13 @@ $(function(){
 
         cube.rotation.x += 0.01
         cube.rotation.y += 0.01
+
+        if (model){
+    
+            model.rotation.z += 0.01
+            model.rotation.y += 0.01
+        
+        }
 
         renderer.render(scene, camera)
 
