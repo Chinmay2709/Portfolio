@@ -1,6 +1,7 @@
 <script setup>
 
     import navi from './components/navi.vue';
+    import mainchat from './views/mainchat.vue';
 
 </script>
 
@@ -10,18 +11,33 @@
         
         flex
         flex-col
+
         h-fit
         w-full
+
         justify-center
         items-center
         
     ">
     
-        <navi/>
+        <navi />
     
     </header>
 
-    <main>
+    <main id="canvas" class="
+    
+        flex
+        flex-col
+
+        h-full
+        w-full
+
+        justify-end
+        items-center
+
+    ">
+
+        <mainchat />
 
     </main>
 

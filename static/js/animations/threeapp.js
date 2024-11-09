@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader'
 
-// import '../../assets/scene.bin'
 import modelPath from '../../assets/scene.gltf'
 
 
@@ -12,8 +11,7 @@ $(function(){
 
     // Creating Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
-    scene.fog = new THREE.Fog(0x1e1e1e,1 ,15);
+    scene.background = new THREE.Color(0x000000);
     
     // Scene gridHelper
     // const gridHelper = new THREE.GridHelper(20, 20);
@@ -26,24 +24,28 @@ $(function(){
 
     // Creating Lights:
     // Ambient Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
     ambientLight.position.set(5, 10, 7.5);
-    scene.add(ambientLight);
+    // scene.add(ambientLight);
 
     // Directional Light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(5, 10, 7.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(0, 0, -10);
     scene.add(directionalLight);
 
     // Point Light
-    const pointLight = new THREE.PointLight(0xff0000, 1, 50);
-    pointLight.position.set(2,5,5);
+    const pointLight = new THREE.PointLight(0x60efff, 50, 20);
+    pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
+    const pointLight2 = new THREE.PointLight(0x0061ff, 50, 20);
+    pointLight2.position.set(-5, 5, 5);
+    scene.add(pointLight2);
+
     // Spot Light
-    const spotLight = new THREE.SpotLight(0x0000ff, 0.5, 100, Math.PI / 6, 0.5, 1);
-    spotLight.position.set(-5, 10, 5);
-    // scene.add(spotLight);
+    const spotLight = new THREE.SpotLight(0xFFCE06, 2, 25, Math.PI / 6, 0.5, 1);
+    spotLight.position.set(0, -5, 5);
+    scene.add(spotLight);
 
 
     // Creating Camera
@@ -51,26 +53,35 @@ $(function(){
     camera.position.z = 5;
 
     // Creating Renderer
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer( {
+        
+        antialias: true
+    
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    
+    // Canvas Rendering
+    const canvas = document.getElementById('canvas');
+    canvas.appendChild( renderer.domElement );
 
 
     // Adding models using loader.
     const loader = new GLTFLoader();
-    let model, modelGroups = new THREE.Group();
-    
+    let model;
+
+
     loader.load(
+
         modelPath,
+        
         (gltf) => {
 
             model = gltf.scene;
+            model.scale.set(0.04, 0.04, 0.04);
 
-            model.scale.set(0.01, 0.01, 0.01);
-            model.position.set(0, 0, 0);
+            scene.add(model);
 
-            modelGroups.add(model);
-            scene.add(modelGroups);
+            model.position.set(0, -4, -7);
         
         },
         
@@ -83,39 +94,23 @@ $(function(){
         }
     );
 
-    // Creating and adding cude.
-    const geometry = new THREE.BoxGeometry();
-    const basicmaterial = new THREE.MeshBasicMaterial({ color: 0x8A80FF });
-    const standardmaterial = new THREE.MeshStandardMaterial( {
-        
-        color: 0x8A80FF,
-        roughness: 0.5,
-        metalness: 0.1
+    // Creating and adding Cuboid:
+    const cubegeometry = new THREE.SphereGeometry(1, 5, 5);
+    const cubepointmaterial = new THREE.PointsMaterial({
 
-    } )
-    
-    const phongmaterial = new THREE.MeshPhongMaterial( {
-        
-        color: 0xB1AAFF,
-        shininess: 100
-    
+        size: 0.15,
+        color: 0xfff95b,
+
     })
-    
-    const cube = new THREE.Mesh(geometry, phongmaterial);
 
-    // Adding Cube.
-    // scene.add(cube)
+    const cuboidPoints = new THREE.Points( cubegeometry, cubepointmaterial )
 
-    // Creating and adding plane.
-    const planegeometry = new THREE.PlaneGeometry(20, 20);
-    const planematerial = new THREE.MeshBasicMaterial({ color: 0xB1AAFF });
-    const plane = new THREE.Mesh(planegeometry, planematerial)
-    
-    plane.rotation.x = -Math.PI / 2;
-    plane.position.y = -1
+    cuboidPoints.scale.set(9.5 , 9.5, 9.5);
+    cuboidPoints.position.set(0 , 2, -7);
 
-    // Adding plane.
-    // scene.add(plane)
+    const cuboid2Points = cuboidPoints.clone();
+
+    scene.add( cuboidPoints, cuboid2Points );
     
 
     // Animate function.
@@ -123,13 +118,16 @@ $(function(){
 
         requestAnimationFrame(animate)
 
-        cube.rotation.x += 0.01
-        cube.rotation.y += 0.01
+        cuboidPoints.rotation.x += 0.001;
+        cuboidPoints.rotation.y += 0.001;
+
+        cuboid2Points.rotation.x -= 0.001;
+        cuboid2Points.rotation.y -= 0.001;
 
         if (model){
     
-            model.rotation.z += 0.01
-            model.rotation.y += 0.01
+            model.rotation.y += 0.001;
+            
         
         }
 

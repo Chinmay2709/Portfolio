@@ -12,23 +12,18 @@
         flex
         flex-row
 
-        mt-[90px]
-
-        fixed
-
         justify-evenly
         justify-items-start
         items-center
         
         h-[80px]
-        w-[90%]
+        w-[70%]
 
         text-[20px]
 
-        bg-[#6355FF]
+        bg-opacity-45
 
         shadow-lg
-        rounded-lg
 
     ">
 
@@ -38,7 +33,7 @@
             flex-row
 
             text-[30px]
-            text-[#FFFFFF]
+            text-[#ffffff]
             font-bold
 
             flex-1
@@ -53,21 +48,30 @@
 
                 p-5
 
+                cursor-pointer
+
                 mr-4
                 ml-4
 
-                rounded-md
-                shadow-md
+                rounded-lg
 
-                bg-[#000000]
                 bg-[url('/assets/myicon.png')]
                 bg-no-repeat
                 bg-cover
                 bg-center
+
+            "></div>
+
+            <div class="
+
+                cursor-pointer
+
             ">
 
+                Chinmay Mishra
+            
             </div>
-            Chinmay Mishra
+        
         </div>
 
         <div class="
@@ -85,7 +89,11 @@
             <button class="
             
                 
-                bg-black
+                bg-gradient-to-r
+                
+                from-[#0061ff]
+                to-[#60efff]
+
                 text-white
                 
                 shadow-md
@@ -93,7 +101,7 @@
 
                 w-[180px]
                 h-[50px]
-
+            
 
 
             ">
