@@ -23,20 +23,26 @@
 
         <section>
 
-            <input type="text" placeholder="Ask me anything about Mr. Chinmay.............." class="
+            <input type="text" placeholder="Let's Discuss..." class="
 
-                bg-gradient-to-r
-                from-[#332901]
-                via-[#1A1A1A]
-                to-[#332901]
+                bg-gray-900
                 text-white
-
+                
                 p-5
 
-                rounded-lg
-                shadow-lg
+                border-solid
+                border-l-2
+                border-r-2
+                border-t-2
+                border-b-2
 
-                border-none
+                border-r-[#60efff]
+                border-l-[#60efff]
+                border-t-[#FFCE06]
+                border-b-[#FFCE06]
+                
+                rounded-lg
+
                 outline-none
 
                 text-xl

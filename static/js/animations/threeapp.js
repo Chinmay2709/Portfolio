@@ -103,6 +103,20 @@ $(function(){
 
     })
 
+    const cubegeometryblue = new THREE.SphereGeometry(1, 5, 5);
+    const cubepointmaterialblue = new THREE.PointsMaterial({
+
+        size: 0.09,
+        color: 0x60efff,
+
+    })
+
+    const cuboid3Points = new THREE.Points( cubegeometryblue, cubepointmaterialblue )
+
+    cuboid3Points.scale.set(9.5 , 9.5, 9.5);
+    cuboid3Points.position.set(0 , 2, -7);
+
+
     const cuboidPoints = new THREE.Points( cubegeometry, cubepointmaterial )
 
     cuboidPoints.scale.set(9.5 , 9.5, 9.5);
@@ -110,19 +124,23 @@ $(function(){
 
     const cuboid2Points = cuboidPoints.clone();
 
-    scene.add( cuboidPoints, cuboid2Points );
-    
+    scene.add( cuboidPoints, cuboid2Points, cuboid3Points );
 
     // Animate function.
     function animate(){
 
         requestAnimationFrame(animate)
+        
+
 
         cuboidPoints.rotation.x += 0.001;
         cuboidPoints.rotation.y += 0.001;
 
         cuboid2Points.rotation.x -= 0.001;
         cuboid2Points.rotation.y -= 0.001;
+
+        cuboid3Points.rotation.x -= 0.001;
+        cuboid3Points.rotation.z -= 0.001;
 
         if (model){
     

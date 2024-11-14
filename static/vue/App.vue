@@ -1,5 +1,10 @@
 <script setup>
 
+    import gsap from 'gsap';
+    import $ from 'jquery';
+
+
+
     import navi from './components/navi.vue';
     import mainchat from './views/mainchat.vue';
 
@@ -46,6 +51,20 @@
 </template>
 
 <script>
+
+    export default {
+
+        mounted() {
+
+            $(function(){
+
+                
+
+            })
+
+        }
+
+    }
 
 </script>
 
